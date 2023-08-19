@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Emoji Encryption</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <h1>Text <span><img src="images/arrow.png" alt=""></span>Emojis</h1>
+        <div id="endec-div">
+            <h3 id="enc-btn"><span><img src="images/padlock.png" alt=""></span>Encrypt Text</h3>
+            <h3 id="dec-btn"><span><img src="images/open-padlock.png" alt=""></span>Decrypt Text</h3>
+        </div>
+        <div id="encryption">
+            <h5>1. Type a message</h5>
+            <textarea placeholder="Write your text here" id="txtmsg" cols="30" rows="10"></textarea>
+            <h5>2. Set a Password</h5>
+            <input type="password" name="" id="pass">
+            <button id="encrypt-btn"><span><img src="images/padlock.png" alt=""></span></button>
+        </div>
+        <div id="decryption">
+            <h5>1. Paste encrypted emojis.</h5>
+            <textarea placeholder="Paste encrypted emojis here" id="txtmsg" cols="30" rows="10"></textarea>
+            <h5>2. Type a Password</h5>
+            <input type="password" name="" id="finalpass">
+            <button id="decrypt-btn"><span><img src="images/open-padlock.png" alt=""></span></button>
+        </div>
+    </div>
+</body>
+</html>
