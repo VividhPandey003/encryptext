@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text to Emoji Encryption</title>
-    <link rel="stylesheet" href="style.css">
+    <title>eNCRYPTEXT</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="main">
@@ -17,16 +20,18 @@
             <h5>1. Type a message</h5>
             <textarea placeholder="Write your text here" id="txtmsg" cols="30" rows="10"></textarea>
             <h5>2. Set a Password</h5>
-            <input type="password" name="" id="pass">
-            <button id="encrypt-btn"><span><img src="images/padlock.png" alt=""></span></button>
+            <input type="password" name="" placeholder="E.g batman" id="password">
+            <button id="encrypt-btn"><span><img src="images/padlock.png" alt=""></span>Encrypt Text</button>
         </div>
         <div id="decryption">
             <h5>1. Paste encrypted emojis.</h5>
-            <textarea placeholder="Paste encrypted emojis here" id="txtmsg" cols="30" rows="10"></textarea>
-            <h5>2. Type a Password</h5>
-            <input type="password" name="" id="finalpass">
-            <button id="decrypt-btn"><span><img src="images/open-padlock.png" alt=""></span></button>
+            <textarea placeholder="Paste encrypted emojis here" id="emojimsg" cols="30" rows="10"></textarea>
+            <h5>2. Type the Password</h5>
+            <input type="password" placeholder="E.g. shush" id="finalpassword">
+            <button id="decrypt-btn"><span><img src="images/open-padlock.png" alt=""></span>Decrypt Emoji</button>
         </div>
+        <div id="result"></div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
