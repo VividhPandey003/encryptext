@@ -1,13 +1,6 @@
 
 var clutter="";
 
-
-
-
-
-
-
-
 function encryption()
 {
     document.querySelector("#encrypt-btn").addEventListener("click",function()
@@ -17,7 +10,7 @@ function encryption()
 
         const str= input.split("");
         str.forEach(element => {
-            clutter += `&#128${element.charCodeAt()}`;
+            clutter += `&#128${element.charCodeAt()} `;
 
         });
 
@@ -46,26 +39,38 @@ function decryption()
     document.querySelector("#decrypt-btn").addEventListener("click",function()
     {
         var clutter2 = "";
-        var input2 = document.querySelector("#") 
+        var input2 = document.querySelector("#emojimsg").value
+        var pass2 = document.querySelector("#finalpassword").value
+        var user=JSON.parse(localStorage.getItem('data1'))
+
+        var str2= input2.split(" ")
+        str2.forEach(element=>{
+            clutter2+= '&#${element.codePointAt(0)}'
+        })
+        var find;
+        for(let i of user)
+        {
+            if(i.clutter == clutter2)
+            {
+                find =i
+            }
+        }
+        if(find.clutter === clutter2)
+        {
+            document.querySelector("#result").style.display = "block"
+            document.querySelector("#result").style.color="#eee"
+            document.querySelector("#result").innerHTML = find.input
+        }
+        else{
+            document.querySelector("#result").style.display = "block"
+            document.querySelector("#result").style.color="#f77668"
+            document.querySelector("#result").innerHTML = "Incorrect Password / No Emojis found :("
+        }
+
     })
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+decryption()
 
 function btnClicking()
 {
