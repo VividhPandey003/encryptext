@@ -1,7 +1,7 @@
 // var clutter = "";
 
-function btnClicking (){
-    document.querySelector("#dec-btn").addEventListener("click", function(){
+function btnClicking() {
+    document.querySelector("#dec-btn").addEventListener("click", function () {
         document.querySelector("#decryption").style.display = "block";
         document.querySelector("#encryption").style.display = "none";
         document.querySelector("#dec-btn").style.backgroundColor = "#333";
@@ -11,9 +11,9 @@ function btnClicking (){
     })
 
 
-    document.querySelector("#enc-btn").addEventListener("click", function(){
+    document.querySelector("#enc-btn").addEventListener("click", function () {
         document.querySelector("#decryption").style.display = "none";
-        document.querySelector("#encryption").style.display= 'block';
+        document.querySelector("#encryption").style.display = 'block';
         document.querySelector("#dec-btn").style.backgroundColor = "#222";
         document.querySelector("#enc-btn").style.backgroundColor = "#333";
         document.querySelector("#arrowIcon").style.rotate = "-360deg";
@@ -29,19 +29,19 @@ btnClicking();
 
 //<------------------------------------------------------------------------------------------------------------->
 //Encryption kaa function neeche hai  
-function encryption(){
+function encryption() {
     var clutter = ""
-    document.querySelector("#encrypt-btn").addEventListener("click", function(){
+    document.querySelector("#encrypt-btn").addEventListener("click", function () {
         // document.querySelector(".copyButton").style.display = "block";
         //getting text as input
         var input = document.getElementById("txtmsg").value;
         console.log(input);
 
-        if(document.getElementById("txtmsg").value){
+        if (document.getElementById("txtmsg").value) {
             document.querySelector("#result").style.display = "block";
             //document.querySelector(".copyButton").style.display = "block";
         }
-        else{
+        else {
             alert("Please enter any text to encrypt");
         }
 
@@ -61,22 +61,22 @@ function encryption(){
         });
         console.log(clutter);
 
-        
+
         document.querySelector("#result").innerHTML = clutter;
 
 
         var dataarr = [];
 
-        if(JSON.parse(localStorage.getItem('data1'))){
+        if (JSON.parse(localStorage.getItem('data1'))) {
             JSON.parse(localStorage.getItem('data1'))
-            dataarr.push({"pass":password, "input":input, "clutter":clutter})
+            dataarr.push({ "pass": password, "input": input, "clutter": clutter })
         }
-        else{
-            dataarr = ({"pass":password, "input":input, "clutter":clutter})
+        else {
+            dataarr = ({ "pass": password, "input": input, "clutter": clutter })
 
         }
 
-       
+
         localStorage.setItem("data1", JSON.stringify(dataarr))
     })
 }
@@ -90,12 +90,12 @@ encryption();
 //Yeh neeche hai Decryption kaa code
 
 function decryption() {
-    document.querySelector("#decrypt-btn").addEventListener("click", function() {
- 
+    document.querySelector("#decrypt-btn").addEventListener("click", function () {
+
         document.querySelector("#result").style.display = "block";
 
 
- 
+
 
         var clutter2 = "";
 
@@ -127,23 +127,23 @@ function decryption() {
         if (found) {
             // Check if the provided password matches the stored password
             if (found.pass === pass2 && found.clutter === duplicatClt2) {
-                document.querySelector("#wrongResult").style.display = "none";
+                document.querySelector("#result").style.display = "none";
                 document.querySelector("#result").style.display = "block";
                 document.querySelector("#result").innerHTML = found.input;
             } else {
                 document.querySelector("#result").style.display = "none";
-                document.querySelector("#wrongResult").style.display = "block";
-                document.querySelector("#wrongResult").innerHTML = "Wrong Password";
+                document.querySelector("#result").style.display = "block";
+                document.querySelector("#result").innerHTML = "Wrong Password";
             }
         } else {
             document.querySelector("#result").style.display = "none";
-            document.querySelector("#wrongResult").style.display = "block";
-            document.querySelector("#wrongResult").innerHTML = "Message not found or Incorrect Input";
+            document.querySelector("#result").style.display = "block";
+            document.querySelector("#result").innerHTML = "Message not found or Incorrect Input";
         }
 
     });
 
-    
+
 }
 decryption();
 

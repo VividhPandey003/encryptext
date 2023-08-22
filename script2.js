@@ -35,43 +35,83 @@ function encryption() {
 encryption();
 
 
+// function decryption() {
+//     document.querySelector("#decrypt-btn").addEventListener("click", function () {
+//         // Get the input and final password from the user
+//         const input2 = document.querySelector("#emojimsg").value;
+//         const finalPass = document.querySelector("#finalpassword").value;
+//         // Convert the input emojis into the cluster format
+//         const clutter2 = input2
+//         .split(" ")
+//         .map(entity => String.fromCodePoint(parseInt(entity.substring(2), 10)))
+//         .join("");
+
+//         console.log(clutter2)
+//         // Retrieve stored data from localStorage
+//         const user = JSON.parse(localStorage.getItem('data1'));
+//         console.log("Stored User Data:", user);
+
+//         // Loop through stored data to find a matching entry
+//         let found = user.find(i => i.clutter === clutter2);
+
+//         for (let entry of user) {
+//             console.log("Entry Clutter:", entry.clutter);
+//             console.log("Entry Pass:", entry.pass);
+//         }
+        
+//         console.log("Clutter2:", clutter2);
+//         console.log("Found Entry:", found);
+
+//         if (found && found.pass === finalPass) {
+//             // Correct password and matching clutter
+//             result.style.display = "block";
+//             result.style.color = "#eee";
+//             result.innerHTML = found.input;
+//         } else {
+//             // Incorrect password or no matching entry
+//             result.style.display = "block";
+//             result.style.color = "#f77668";
+//             result.innerHTML = "Incorrect Password / No Emojis found :(";
+//         }
+//     });
+// }
+
 function decryption() {
     document.querySelector("#decrypt-btn").addEventListener("click", function () {
         // Get the input and final password from the user
         const input2 = document.querySelector("#emojimsg").value;
         const finalPass = document.querySelector("#finalpassword").value;
+        console.log("Input: ", input2)
         // Convert the input emojis into the cluster format
         const clutter2 = input2
-        .split(" ")
-        .map(entity => String.fromCodePoint(parseInt(entity.substring(2), 10)))
-        .join("");
-
-        console.log(clutter2)
+            .split(" ")
+            .map(entity => entity.substring(4)) // Remove "&#128" prefix
+            .join("");
+            console.log(clutter2)
         // Retrieve stored data from localStorage
         const user = JSON.parse(localStorage.getItem('data1'));
-        console.log("Stored User Data:", user);
-
-        // Loop through stored data to find a matching entry
+        // Find a matching entry based on the clutter
         let found = user.find(i => i.clutter === clutter2);
-
-        for (let entry of user) {
-            console.log("Entry Clutter:", entry.clutter);
-            console.log("Entry Pass:", entry.pass);
-        }
-        
-        console.log("Clutter2:", clutter2);
-        console.log("Found Entry:", found);
-
-        if (found && found.pass === finalPass) {
-            // Correct password and matching clutter
-            result.style.display = "block";
-            result.style.color = "#eee";
-            result.innerHTML = found.input;
+        console.log("found= ", found)
+        if (found) {
+            if (found.pass === finalPass) {
+                // Correct password and matching clutter
+                result.style.display = "block";
+                result.style.color = "#eee";
+                // Convert clutter back to original text
+                const originalText = found.input;
+                result.innerHTML = originalText;
+            } else {
+                // Incorrect password
+                result.style.display = "block";
+                result.style.color = "#f77668";
+                result.innerHTML = "Incorrect Password";
+            }
         } else {
-            // Incorrect password or no matching entry
+            // No matching entry found
             result.style.display = "block";
             result.style.color = "#f77668";
-            result.innerHTML = "Incorrect Password / No Emojis found :(";
+            result.innerHTML = "No Emojis found :(";
         }
     });
 }
