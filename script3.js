@@ -82,13 +82,6 @@ function encryption() {
 }
 encryption();
 
-
-
-
-
-//<------------------------------------------------------------------------------------------------------------>
-//Yeh neeche hai Decryption kaa code
-
 function decryption() {
     document.querySelector("#decrypt-btn").addEventListener("click", function () {
 
@@ -146,30 +139,3 @@ function decryption() {
 
 }
 decryption();
-
-
-
-//<------------------------------------------------------------------------------------------------------------->
-//Copy button function
-// document.querySelector("#copyButton").addEventListener("click", function() {
-//     var copyText = document.querySelector("#result").value.trim();
-//     if (copyText) {
-//         navigator.clipboard.writeText(copyText);
-//         // alert("Text copied: " + copyText);
-//     } else {
-//         alert("No content to copy.");
-//     }
-// });
-
-
-
-
-/*Local storage ke liye basic commands....... */
-//Local Storage
-// localStorage.clear();
-// localStorage.setItem("Username", "iamsrpk02");
-
-// var arr = ["Prashant", 22, "Male"];
-
-// localStorage.setItem('Array', JSON.stringify(arr))
-// console.log(JSON.parse(localStorage.getItem('array')));
