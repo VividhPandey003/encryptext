@@ -110,7 +110,8 @@ function decryption() {
         var decryptedEmojiText = "";
         var emojiBuffer = ""; // Temporary buffer for emoji characters
         //console.log(emojiText.length)
-        for (var i = 0; i < emojiText.length; i++) {
+        for (var i = 0; i < emojiText.length; i++) 
+        {
             var char = emojiText[i];
             console.log(char)
             // Check if the character is an emoji
