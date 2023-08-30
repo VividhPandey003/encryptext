@@ -4,43 +4,169 @@ const result = document.querySelector("#result");
 var clutter = "";
 var clutter2 = "";
 
+// function encryption() {
+//     document.querySelector("#encrypt-btn").addEventListener("click", function () {
+//         var input = document.getElementById("txtmsg").value;
+//         var pass = document.getElementById("password").value;
+//         var clutter2 = "";
+//         var encrypted = CryptoJS.AES.encrypt(input, pass).toString();
+//         console.log("encrypted:", encrypted)
+//         // console.log("bleh", encrypted.toString() );
+//         const str = encrypted.split("");
+//         clutter = "";
+//         console.log(str)
+//         str.forEach(element => {
+
+//             clutter += `&#128${element.charCodeAt()} `;
+//         });
+
+//         document.querySelector("#result").style.display = "block";
+//         document.querySelector("#result").innerHTML = clutter;
+//     });
+// }
+
+const asciiToEmojiMapping = {
+    'A': '😎',
+    'B': '👀',
+    'C': '🌵',
+    'D': '🏁',
+    'E': '😂',
+    'F': '🚮',
+    'G': '🍕',
+    'H': '🐶',
+    'I': '😇',
+    'J': '🌈',
+    'K': '😸',
+    'L': '🦄',
+    'M': '🐌',
+    'N': '🌻',
+    'O': '🌝',
+    'P': '🌚',
+    'Q': '😬',
+    'R': '😜',
+    'S': '🤗',
+    'T': '💯',
+    'U': '🎏',
+    'V': '🚲',
+    'W': '🎰',
+    'X': '🍾',
+    'Y': '🌮',
+    'Z': '🍣',
+    'a': '🥑',
+    'b': '🐟',
+    'c': '🐙',
+    'd': '🐊',
+    'e': '😈',
+    'f': '👻',
+    'g': '🦀',
+    'h': '💩',
+    'i': '😉',
+    'j': '🌎',
+    'k': '🙈',
+    'l': '💰',
+    'm': '❤',
+    'n': '️💤',
+    'o': '💃',
+    'p': '💪',
+    'q': '👽',
+    'r': '😨',
+    's': '🙌',
+    't': '👾',
+    'u': '🤑',
+    'v': '👯',
+    'w': '💦',
+    'x': '🍤',
+    'y': '🚗',
+    'z': '⛵',
+    '0': '🔅',
+    '1': '🔮',
+    '2': '🎉',
+    '3': '📯',
+    '4': '💸',
+    '5': '🌴',
+    '6': '💫',
+    '7': '✨',
+    '8': '☀',
+    '9': '️🐛',
+    '+': '🤠',
+    '/': '😒',
+    '=': '🔗'
+};
+
 function encryption() {
     document.querySelector("#encrypt-btn").addEventListener("click", function () {
         var input = document.getElementById("txtmsg").value;
         var pass = document.getElementById("password").value;
-        var clutter2 = "";
         var encrypted = CryptoJS.AES.encrypt(input, pass).toString();
-        console.log("encrypted:", encrypted)
-        // console.log("bleh", encrypted.toString() );
-
+        console.log("encrypted:", encrypted);
 
         const str = encrypted.split("");
         clutter = "";
-        console.log(str)
+
         str.forEach(element => {
-            clutter += `&#128${element.charCodeAt()} `;
+            clutter += asciiToEmojiMapping[element] || element; // Use the emoji mapping
         });
 
         document.querySelector("#result").style.display = "block";
         document.querySelector("#result").innerHTML = clutter;
     });
 }
+
 encryption();
+
+
+const emojiToAsciiMapping = invertMapping(asciiToEmojiMapping);
+
+function invertMapping(mapping) {
+    const inverted = {};
+    for (const key in mapping) {
+        if (mapping.hasOwnProperty(key)) {
+            inverted[mapping[key]] = key;
+        }
+    }
+    return inverted;
+}
 
 function decryption() {
     document.querySelector("#decrypt-btn").addEventListener("click", function () {
-        const input2 = document.querySelector("#emojimsg").value;
-        const finalPass = document.querySelector("#finalpassword").value;
-        
-        // const decrypted = CryptoJS.AES.decrypt(input, finalpass);
-        console.log("Input: ", input2)
-        
-        console.log("clutter: ", clutter2)
+        var emojiText = document.getElementById("result").textContent;
+        var pass = document.getElementById("password").value;
 
-    })
+        var decryptedEmojiText = "";
+        var emojiBuffer = ""; // Temporary buffer for emoji characters
 
+        for (var i = 0; i < emojiText.length; i++) {
+            var char = emojiText[i];
+
+            // Check if the character is an emoji
+            if (char in emojiToAsciiMapping) {
+                emojiBuffer += char;
+            } else {
+                if (emojiBuffer) {
+                    decryptedEmojiText += emojiToAsciiMapping[emojiBuffer] || emojiBuffer;
+                    emojiBuffer = "";
+                }
+                decryptedEmojiText += char;
+            }
+        }
+
+        try {
+            var decrypted = CryptoJS.AES.decrypt(decryptedEmojiText, pass).toString(CryptoJS.enc.Utf8);
+            console.log("decrypted:", decrypted);
+
+            document.querySelector("#result").style.display = "block";
+            document.querySelector("#result").innerHTML = decrypted;
+        } catch (error) {
+            console.error("Decryption error:", error);
+            document.querySelector("#result").style.display = "block";
+            document.querySelector("#result").innerHTML = "Decryption error";
+        }
+    });
 }
+
+
 decryption();
+
 
 function btnClicking() {
     document.querySelector("#dec-btn").addEventListener("click", function () {
