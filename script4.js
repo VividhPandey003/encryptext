@@ -4,27 +4,6 @@ const result = document.querySelector("#result");
 var clutter = "";
 var clutter2 = "";
 
-// function encryption() {
-//     document.querySelector("#encrypt-btn").addEventListener("click", function () {
-//         var input = document.getElementById("txtmsg").value;
-//         var pass = document.getElementById("password").value;
-//         var clutter2 = "";
-//         var encrypted = CryptoJS.AES.encrypt(input, pass).toString();
-//         console.log("encrypted:", encrypted)
-//         // console.log("bleh", encrypted.toString() );
-//         const str = encrypted.split("");
-//         clutter = "";
-//         console.log(str)
-//         str.forEach(element => {
-
-//             clutter += `&#128${element.charCodeAt()} `;
-//         });
-
-//         document.querySelector("#result").style.display = "block";
-//         document.querySelector("#result").innerHTML = clutter;
-//     });
-// }
-
 const asciiToEmojiMapping = {
     'A': '😎',
     'B': '👀',
@@ -114,7 +93,6 @@ function encryption() {
 
 encryption();
 
-
 const emojiToAsciiMapping = invertMapping(asciiToEmojiMapping);
 
 function invertMapping(mapping) {
@@ -124,6 +102,7 @@ function invertMapping(mapping) {
             inverted[mapping[key]] = key;
         }
     }
+    console.log("Inverted=",inverted);
     return inverted;
 }
 
@@ -131,13 +110,12 @@ function decryption() {
     document.querySelector("#decrypt-btn").addEventListener("click", function () {
         var emojiText = document.getElementById("result").textContent;
         var pass = document.getElementById("password").value;
-
         var decryptedEmojiText = "";
         var emojiBuffer = ""; // Temporary buffer for emoji characters
 
         for (var i = 0; i < emojiText.length; i++) {
             var char = emojiText[i];
-
+            console.log("ch=",char);
             // Check if the character is an emoji
             if (char in emojiToAsciiMapping) {
                 emojiBuffer += char;
@@ -148,6 +126,7 @@ function decryption() {
                 }
                 decryptedEmojiText += char;
             }
+            console.log(emojiBuffer);
         }
 
         try {
