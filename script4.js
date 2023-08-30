@@ -78,14 +78,11 @@ function encryption() {
         var pass = document.getElementById("password").value;
         var encrypted = CryptoJS.AES.encrypt(input, pass).toString();
         console.log("encrypted:", encrypted);
-
         const str = encrypted.split("");
         clutter = "";
-
         str.forEach(element => {
             clutter += asciiToEmojiMapping[element] || element; // Use the emoji mapping
         });
-
         document.querySelector("#result").style.display = "block";
         document.querySelector("#result").innerHTML = clutter;
     });
@@ -102,7 +99,7 @@ function invertMapping(mapping) {
             inverted[mapping[key]] = key;
         }
     }
-    console.log("Inverted=",inverted);
+    console.log("Inverted=", inverted);
     return inverted;
 }
 
@@ -112,27 +109,27 @@ function decryption() {
         var pass = document.getElementById("password").value;
         var decryptedEmojiText = "";
         var emojiBuffer = ""; // Temporary buffer for emoji characters
-
+        //console.log(emojiText.length)
         for (var i = 0; i < emojiText.length; i++) {
             var char = emojiText[i];
-            console.log("ch=",char);
+            console.log(char)
             // Check if the character is an emoji
             if (char in emojiToAsciiMapping) {
                 emojiBuffer += char;
-            } else {
+            }
+            // check this logic once, the main issue here might be
+            // the emojitext traversal being outofbounds.
+            else {
                 if (emojiBuffer) {
                     decryptedEmojiText += emojiToAsciiMapping[emojiBuffer] || emojiBuffer;
                     emojiBuffer = "";
                 }
                 decryptedEmojiText += char;
             }
-            console.log(emojiBuffer);
         }
-
         try {
             var decrypted = CryptoJS.AES.decrypt(decryptedEmojiText, pass).toString(CryptoJS.enc.Utf8);
             console.log("decrypted:", decrypted);
-
             document.querySelector("#result").style.display = "block";
             document.querySelector("#result").innerHTML = decrypted;
         } catch (error) {
