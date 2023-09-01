@@ -1,68 +1,187 @@
-
+const text = document.querySelector("#txtmsg");
+const password = document.querySelector('#password');
+const result = document.querySelector("#result");
 var clutter = "";
+var clutter2 = "";
 
-function encryption() {
-    document.querySelector("#encrypt-btn").addEventListener("click", function () {
-        var input = document.getElementById("txtmsg").value;
-        var password = document.getElementById("password").value;
+const asciiToEmojiMapping = {
+    'A': '😎',
+    'B': '👀',
+    'C': '🌵',
+    'D': '🏁',
+    'E': '😂',
+    'F': '🚮',
+    'G': '🍕',
+    'H': '🐶',
+    'I': '😇',
+    'J': '🌈',
+    'K': '😸',
+    'L': '🦄',
+    'M': '🐌',
+    'N': '🌻',
+    'O': '🌝',
+    'P': '🌚',
+    'Q': '😬',
+    'R': '😜',
+    'S': '🤗',
+    'T': '💯',
+    'U': '🎏',
+    'V': '🚲',
+    'W': '🎰',
+    'X': '🍾',
+    'Y': '🌮',
+    'Z': '🍣',
+    'a': '🥑',
+    'b': '🐟',
+    'c': '🐙',
+    'd': '🐊',
+    'e': '😈',
+    'f': '👻',
+    'g': '🦀',
+    'h': '💩',
+    'i': '😉',
+    'j': '🌎',
+    'k': '🙈',
+    'l': '💰',
+    'm': '😓',
+    'n': '🔥',
+    'o': '💃',
+    'p': '💪',
+    'q': '👽',
+    'r': '😨',
+    's': '🙌',
+    't': '👾',
+    'u': '🤑',
+    'v': '👯',
+    'w': '💦',
+    'x': '🍤',
+    'y': '🚗',
+    'z': '⛵',
+    '0': '🔅',
+    '1': '🔮',
+    '2': '🎉',
+    '3': '📯',
+    '4': '💸',
+    '5': '🌴',
+    '6': '💫',
+    '7': '✨',
+    '8': '🤨',
+    '9': '️💃',
+    '+': '🤠',
+    '/': '😒',
+    '=': '🔗'
+};
 
-        const str = input.split("");
-        str.forEach(element => {
-            clutter += `&#128${element.charCodeAt()} `;
+const emojiToAsciiMapping = {
+    '😎': 'A',
+    '👀': 'B',
+    '🌵': 'C',
+    '🏁': 'D',
+    '😂': 'E',
+    '🚮': 'F',
+    '🍕': 'G',
+    '🐶': 'H',
+    '😇': 'I',
+    '🌈': 'J',
+    '😸': 'K',
+    '🦄': 'L',
+    '🐌': 'M',
+    '🌻': 'N',
+    '🌝': 'O',
+    '🌚': 'P',
+    '😬': 'Q',
+    '😜': 'R',
+    '🤗': 'S',
+    '💯': 'T',
+    '🎏': 'U',
+    '🚲': 'V',
+    '🎰': 'W',
+    '🍾': 'X',
+    '🌮': 'Y',
+    '🍣': 'Z',
+    '🥑': 'a',
+    '🐟': 'b',
+    '🐙': 'c',
+    '🐊': 'd',
+    '😈': 'e',
+    '👻': 'f',
+    '🦀': 'g',
+    '💩': 'h',
+    '😉': 'i',
+    '🌎': 'j',
+    '🙈': 'k',
+    '💰': 'l',
+    '😓': 'm',
+    '💃': 'o',
+    '🔥': 'n',
+    '💪': 'p',
+    '👽': 'q',
+    '😨': 'r',
+    '🙌': 's',
+    '👾': 't',
+    '🤑': 'u',
+    '👯': 'v',
+    '💦': 'w',
+    '🍤': 'x',
+    '🚗': 'y',
+    '⛵': 'z',
+    '🔅': '0',
+    '🔮': '1',
+    '🎉': '2',
+    '📯': '3',
+    '💸': '4',
+    '🌴': '5',
+    '💫': '6',
+    '✨': '7',
+    '🤨': '8',
+    '️💃': '9',
+    '🤠': '+',
+    '😒': '/',
+    '🔗': '=',
+};
 
-        });
-
-        document.querySelector("#result").style.display = "block"
-        document.querySelector("#result").innerHTML = clutter;
-
-        var dataarr = [];
-        if (JSON.parse(localStorage.getItem('data1'))) {
-            dataarr = JSON.parse(localStorage.getItem('data1'))
-            dataarr.push({ "pass": password, "input": input, "clutter": clutter })
-        }
-        else {
-            dataarr = [{ "pass": password, "input": input, "clutter": clutter }]
-        }
-        dataarr = [{ "pass": password, "input": input, "clutter": clutter }]
-
-        localStorage.setItem('data1', JSON.stringify(dataarr))
-    })
+const encryption = (event) => {
+    var input = document.getElementById("txtmsg").value;
+    var pass = document.getElementById("password").value;
+    var encrypted = CryptoJS.AES.encrypt(input, pass).toString();
+    console.log("e:", encrypted);
+    const str = encrypted.split("");
+    clutter = "";
+    str.forEach(element => {
+        clutter += asciiToEmojiMapping[element] || element; // Use the emoji mapping
+    });
+    document.querySelector("#result").style.display = "block";
+    document.querySelector("#result").innerHTML = clutter;
 }
-encryption()
 
 
-function decryption() {
-    document.querySelector("#decrypt-btn").addEventListener("click", function () {
-        var clutter2 = "";
-        var input2 = document.querySelector("#emojimsg").value
-        var pass2 = document.querySelector("#finalpassword").value
-        var user = JSON.parse(localStorage.getItem('data1'))
 
-        var str2 = input2.split(" ")
-        str2.forEach(element => {
-            clutter2 += `&#128${element.codePointAt(0)}`;
-        })
-        var find;
-        for (let i of user) {
-            if (i.clutter == clutter2) {
-                find = i
-            }
+const decryption = (event) => {
+    const emojiText = document.getElementById("emojimsg").value;
+    console.log("emojiText",emojiText);
+    const pass = document.getElementById("finalpassword").value;
+    let decryptedEmojiText = "";
+    const inputArray = Array.from(emojiText);
+    // console.log(inputArray)
+    for (let index=0;index<inputArray.length;index++) {
+        let char = inputArray[index];
+        if (char in emojiToAsciiMapping) {
+            // console.log(emojiToAsciiMapping[char]);
+            decryptedEmojiText += emojiToAsciiMapping[char];
+        } else {
+            decryptedEmojiText += char;
         }
-        if (find && find.clutter === clutter2) {
-            document.querySelector("#result").style.display = "block"
-            document.querySelector("#result").style.color = "#eee"
-            document.querySelector("#result").innerHTML = find.input
-        }
-        else {
-            document.querySelector("#result").style.display = "block"
-            document.querySelector("#result").style.color = "#f77668"
-            document.querySelector("#result").innerHTML = "Incorrect Password / No Emojis found :("
-        }
+    }
+    console.log("d:", decryptedEmojiText);
+    decryptedEmojiText=decryptedEmojiText.trim()
+    let decrypted=CryptoJS.AES.decrypt(decryptedEmojiText, pass).toString(CryptoJS.enc.Utf8);
+    // console.log(decrypted);
 
-    })
+    document.getElementById("result").textContent = decrypted;
 }
 
-decryption()
+
+
 
 function btnClicking() {
     document.querySelector("#dec-btn").addEventListener("click", function () {
@@ -72,7 +191,8 @@ function btnClicking() {
         document.querySelector("#enc-btn").style.backgroundColor = "#222";
         document.querySelector("#result").style.display = "none";
         document.querySelector("#main>h1 span img").style.rotate = "270deg";
-    })
+    });
+
     document.querySelector("#enc-btn").addEventListener("click", function () {
         document.querySelector("#encryption").style.display = "block";
         document.querySelector("#decryption").style.display = "none";
@@ -80,14 +200,21 @@ function btnClicking() {
         document.querySelector("#dec-btn").style.backgroundColor = "#222";
         document.querySelector("#result").style.display = "none";
         document.querySelector("#main>h1 span img").style.rotate = "90deg";
-    })
+    });
 }
+btnClicking();
 
 document.querySelector("#encrypt-btn").addEventListener("click", function () {
     document.querySelector("#result").style.display = "block";
-})
+});
+
 document.querySelector("#decrypt-btn").addEventListener("click", function () {
     document.querySelector("#result").style.display = "block";
-})
-btnClicking()
+});
 
+
+const main = () => {
+    document.querySelector("#encrypt-btn").addEventListener("click", encryption);
+    document.querySelector("#decrypt-btn").addEventListener("click", decryption);
+}
+main()
