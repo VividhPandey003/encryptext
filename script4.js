@@ -91,119 +91,101 @@ function encryption() {
 
 encryption();
 
-// const emojiToAsciiMapping = invertMapping(asciiToEmojiMapping);
-
-// function invertMapping(mapping) {
-//     const inverted = {};
-//     for (const key in mapping) {
-//         if (mapping.hasOwnProperty(key)) {
-//             inverted[mapping[key]] = key;
-//         }
-//     }
-//     console.log("Inverted=", inverted);
-//     return inverted;
-// }
 function decryption() {
     const emojiToAsciiMapping = {
-      '😎': 'A',
-      '👀': 'B',
-      '🌵': 'C',
-      '🏁': 'D',
-      '😂': 'E',
-      '🚮': 'F',
-      '🍕': 'G',
-      '🐶': 'H',
-      '😇': 'I',
-      '🌈': 'J',
-      '😸': 'K',
-      '🦄': 'L',
-      '🐌': 'M',
-      '🌻': 'N',
-      '🌝': 'O',
-      '🌚': 'P',
-      '😬': 'Q',
-      '😜': 'R',
-      '🤗': 'S',
-      '💯': 'T',
-      '🎏': 'U',
-      '🚲': 'V',
-      '🎰': 'W',
-      '🍾': 'X',
-      '🌮': 'Y',
-      '🍣': 'Z',
-      '🥑': 'a',
-      '🐟': 'b',
-      '🐙': 'c',
-      '🐊': 'd',
-      '😈': 'e',
-      '👻': 'f',
-      '🦀': 'g',
-      '💩': 'h',
-      '😉': 'i',
-      '🌎': 'j',
-      '🙈': 'k',
-      '💰': 'l',
-      '❤': 'm',
-      '️💤': 'n',
-      '💃': 'o',
-      '💪': 'p',
-      '👽': 'q',
-      '😨': 'r',
-      '🙌': 's',
-      '👾': 't',
-      '🤑': 'u',
-      '👯': 'v',
-      '💦': 'w',
-      '🍤': 'x',
-      '🚗': 'y',
-      '⛵': 'z',
-      '🔅': '0',
-      '🔮': '1',
-      '🎉': '2',
-      '📯': '3',
-      '💸': '4',
-      '🌴': '5',
-      '💫': '6',
-      '✨': '7',
-      '☀': '8',
-      '️🐛': '9',
-      '🤠': '+',
-      '😒': '/',
-      '🔗': '=',
+        '😎': 'A',
+        '👀': 'B',
+        '🌵': 'C',
+        '🏁': 'D',
+        '😂': 'E',
+        '🚮': 'F',
+        '🍕': 'G',
+        '🐶': 'H',
+        '😇': 'I',
+        '🌈': 'J',
+        '😸': 'K',
+        '🦄': 'L',
+        '🐌': 'M',
+        '🌻': 'N',
+        '🌝': 'O',
+        '🌚': 'P',
+        '😬': 'Q',
+        '😜': 'R',
+        '🤗': 'S',
+        '💯': 'T',
+        '🎏': 'U',
+        '🚲': 'V',
+        '🎰': 'W',
+        '🍾': 'X',
+        '🌮': 'Y',
+        '🍣': 'Z',
+        '🥑': 'a',
+        '🐟': 'b',
+        '🐙': 'c',
+        '🐊': 'd',
+        '😈': 'e',
+        '👻': 'f',
+        '🦀': 'g',
+        '💩': 'h',
+        '😉': 'i',
+        '🌎': 'j',
+        '🙈': 'k',
+        '💰': 'l',
+        '❤': 'm',
+        '️💤': 'n',
+        '💃': 'o',
+        '💪': 'p',
+        '👽': 'q',
+        '😨': 'r',
+        '🙌': 's',
+        '👾': 't',
+        '🤑': 'u',
+        '👯': 'v',
+        '💦': 'w',
+        '🍤': 'x',
+        '🚗': 'y',
+        '⛵': 'z',
+        '🔅': '0',
+        '🔮': '1',
+        '🎉': '2',
+        '📯': '3',
+        '💸': '4',
+        '🌴': '5',
+        '💫': '6',
+        '✨': '7',
+        '☀': '8',
+        '️🐛': '9',
+        '🤠': '+',
+        '😒': '/',
+        '🔗': '=',
     };
-  
+
     document.querySelector("#decrypt-btn").addEventListener("click", function () {
-      const emojiText = document.getElementById("result").textContent;
-      const pass = document.getElementById("password").value;
-      let decryptedEmojiText = "";
-  
-      for (let i = 0; i < emojiText.length; i++) {
-        if (emojiText[i] === ' ') {
-          decryptedEmojiText += ' ';
-          continue;
+        const emojiText = document.getElementById("result").textContent;
+        const pass = document.getElementById("password").value;
+        let decryptedEmojiText = "";
+
+        for (let i = 0; i < emojiText.length; i++) {
+            if (emojiText[i] === ' ') {
+                decryptedEmojiText += ' ';
+                continue;
+            }
+            let emojiPart = emojiText[i];
+            while (i + 1 < emojiText.length && emojiText[i + 1] !== ' ') {
+                emojiPart += emojiText[i + 1];
+                i++;
+            }
+            if (emojiPart in emojiToAsciiMapping) {
+                decryptedEmojiText += emojiToAsciiMapping[emojiPart];
+            } else {
+                decryptedEmojiText += emojiPart; // If not found in mapping, keep the original emoji
+            }
         }
-  
-        let emojiPart = emojiText[i];
-        while (i + 1 < emojiText.length && emojiText[i + 1] !== ' ') {
-          emojiPart += emojiText[i + 1];
-          i++;
-        }
-  
-        if (emojiPart in emojiToAsciiMapping) {
-          decryptedEmojiText += emojiToAsciiMapping[emojiPart];
-        } else {
-          decryptedEmojiText += emojiPart; // If not found in mapping, keep the original emoji
-        }
-      }
-  
-      document.getElementById("decrypted-result").textContent = decryptedEmojiText;
+        document.getElementById("result").textContent = decryptedEmojiText;
     });
-  }
-  
-  decryption();
-  
+}
 
-
+decryption();
 
 function btnClicking() {
     document.querySelector("#dec-btn").addEventListener("click", function () {
