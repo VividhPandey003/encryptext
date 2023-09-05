@@ -16,7 +16,7 @@ Encryptxt is your secret emoji messenger! 💌 Convert your plain text into a co
 
 Ready to embark on an emoji adventure? Follow these simple steps:
 
-1. Visit our magical [Encryptxt Castle](https://encryptxt.netlify.app/).
+1. Visit our magical <a href="https://encryptxt.netlify.app/" target="_blank">Encryptxt Castle</a>.
 
 2. Type your message in the mystical input box. 📜
 
@@ -26,7 +26,7 @@ Ready to embark on an emoji adventure? Follow these simple steps:
 
 5. Copy the enchanted emojis and send them to your fellow wizards and witches. 🧙‍♂️🧙‍♀️
 
-6. To decode the spellbinding emojis, visit the [Encryptxt Castle](https://encryptxt.netlify.app/) once more.
+6. To decode the spellbinding emojis, visit the <a href="https://encryptxt.netlify.app/" target="_blank">Encryptxt Castle</a> once more.
 
 7. Whisper the secret password and click "Decrypt." 🤐🔓
 
@@ -56,11 +56,11 @@ Encryptxt is a simple web application that allows you to convert text to emojis 
 
 You can access the live demo of Encryptxt here: 
 
-[Encryptxt Demo](https://encryptxt.netlify.app/)
+<a href="https://encryptxt.netlify.app/" target="_blank">Encryptxt Castle</a> 
 
 ## Inspiration
 
-Inspired by Deepankar Bhade's [txtmoji](https://txtmoji.com/).
+Inspired by Deepankar Bhade's <a href="[https://encryptxt.netlify.app](https://txtmoji.com/)/" target="_blank">txtmoji</a> 
 
 
 ## Table of Contents
