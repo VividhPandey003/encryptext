@@ -7,7 +7,9 @@
 Encryptxt is your secret emoji messenger! 💌 Convert your plain text into a colorful emoji masterpiece, and only those with the magic password can decode your secret message! 🪄✨
 
 ![Screenshot](https://github.com/VividhPandey003/encryptext/blob/main/images/Slide1.png?raw=true)
+
 ![Screenshot](https://github.com/VividhPandey003/encryptext/blob/main/images/Slide2.png?raw=true)
+
 ![Screenshot](https://github.com/VividhPandey003/encryptext/blob/main/images/Slide3.png?raw=true)
 
 ## 🚀 Get Started
