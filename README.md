@@ -60,8 +60,7 @@ You can access the live demo of Encryptxt here:
 
 ## Inspiration
 
-Inspired by Deepankar Bhade's <a href="[https://encryptxt.netlify.app](https://txtmoji.com/)/" target="_blank">txtmoji</a> 
-
+Inspired by Deepankar Bhade's [txtmoji](https://txtmoji.com/).
 
 ## Table of Contents
 - [Features](#features)
