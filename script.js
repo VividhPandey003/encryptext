@@ -62,11 +62,11 @@ const asciiToEmojiMapping = {
     '2': '🎉',
     '3': '📯',
     '4': '💸',
+    '9': '️😍',
     '5': '🌴',
     '6': '💫',
     '7': '✨',
     '8': '🤨',
-    '9': '️💃',
     '+': '🤠',
     '/': '😒',
     '=': '🔗'
@@ -130,11 +130,11 @@ const emojiToAsciiMapping = {
     '🎉': '2',
     '📯': '3',
     '💸': '4',
+    '😍': '9',
     '🌴': '5',
     '💫': '6',
     '✨': '7',
     '🤨': '8',
-    '️💃': '9',
     '🤠': '+',
     '😒': '/',
     '🔗': '=',
@@ -144,7 +144,8 @@ const encryption = (event) => {
     var input = document.getElementById("txtmsg").value;
     var pass = document.getElementById("password").value;
     var encrypted = CryptoJS.AES.encrypt(input, pass).toString();
-    console.log("e:", encrypted);
+    //console.log(pass)
+    //console.log("e:", encrypted);
     const str = encrypted.split("");
     clutter = "";
     str.forEach(element => {
@@ -158,26 +159,41 @@ const encryption = (event) => {
 
 const decryption = (event) => {
     const emojiText = document.getElementById("emojimsg").value;
-    console.log("emojiText",emojiText);
+    // console.log("emojiText",emojiText);
     const pass = document.getElementById("finalpassword").value;
     let decryptedEmojiText = "";
     const inputArray = Array.from(emojiText);
     // console.log(inputArray)
-    for (let index=0;index<inputArray.length;index++) {
+    let index = 0;
+    while (index < inputArray.length) {
         let char = inputArray[index];
-        if (char in emojiToAsciiMapping) {
-            // console.log(emojiToAsciiMapping[char]);
-            decryptedEmojiText += emojiToAsciiMapping[char];
+        if (emojiToAsciiMapping[char] === undefined) {
+            decryptedEmojiText += '';
         } else {
-            decryptedEmojiText += char;
+            decryptedEmojiText += emojiToAsciiMapping[char];
         }
+        index++;
     }
-    console.log("d:", decryptedEmojiText);
-    decryptedEmojiText=decryptedEmojiText.trim()
-    let decrypted=CryptoJS.AES.decrypt(decryptedEmojiText, pass).toString(CryptoJS.enc.Utf8);
-    // console.log(decrypted);
-
-    document.getElementById("result").textContent = decrypted;
+    //console.log("d:", decryptedEmojiText);
+    decryptedEmojiText = decryptedEmojiText.trim()
+    let decrypted = ''
+    try {
+        decrypted = CryptoJS.AES.decrypt(decryptedEmojiText, pass).toString(CryptoJS.enc.Utf8);
+    } catch (e) {
+        document.querySelector("#result").style.display = "block"
+        document.querySelector("#result").style.color = "#f77668"
+        document.getElementById("result").textContent = "Incorrect Password / No Emojis found :("
+    }
+    if (decrypted !== "") {
+        document.querySelector("#result").style.display = "block"
+        document.querySelector("#result").style.color = "#eee"
+        document.getElementById("result").textContent = decrypted;
+    }
+    else {
+        document.querySelector("#result").style.display = "block"
+        document.querySelector("#result").style.color = "#f77668"
+        document.getElementById("result").textContent = "Incorrect Password / No Emojis found :("
+    }
 }
 
 
