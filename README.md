@@ -2,7 +2,9 @@
 
 Encryptxt is a simple web application that allows you to convert text to emojis and share it securely with others. To decrypt the emojis and reveal the original text, users must enter the associated password.
 
-You can access the live demo of Encryptxt here: [Encryptxt Demo](https://encryptxt.netlify.app/)
+You can access the live demo of Encryptxt here: 
+
+[Encryptxt Demo](https://encryptxt.netlify.app/)
 
 ## Table of Contents
 - [Features](#features)
