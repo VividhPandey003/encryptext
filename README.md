@@ -40,7 +40,7 @@ Ready to embark on an emoji adventure? Follow these simple steps:
 
 Are you a fellow sorcerer or sorceress? We welcome contributions from all magical beings! To join our coven:
 
-1. 🍀 Fork the [Encryptxt Cauldron](https://github.com/your-username/encryptxt).
+1. 🍀 Fork the [Encryptxt Cauldron](https://github.com/VividhPandey003/encryptxt).
 
 2. 🌟 Craft your magical changes and brew them in your branch.
 
