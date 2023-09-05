@@ -36,6 +36,10 @@ Ready to embark on an emoji adventure? Follow these simple steps:
 - Keep your secret messages safe from prying eyes. 👁️🔍
 - Add a sprinkle of fun to your communication. 😄🎉
 
+## Inspiration
+
+Inspired by Deepankar Bhade's [txtmoji](https://txtmoji.com/).
+
 ## 🧙‍♂️ Contribute
 
 Are you a fellow sorcerer or sorceress? We welcome contributions from all magical beings! To join our coven:
@@ -48,35 +52,12 @@ Are you a fellow sorcerer or sorceress? We welcome contributions from all magica
 
    ```sh
    git commit -m "Added a new enchantment"
-
-
-# Encryptxt
-
-Encryptxt is a simple web application that allows you to convert text to emojis and share it securely with others. To decrypt the emojis and reveal the original text, users must enter the associated password. This encryption is based on AES Cipher.
-
-You can access the live demo of Encryptxt here: 
-
-<a href="https://encryptxt.netlify.app/" target="_blank">Encryptxt Castle</a> 
-
-## Inspiration
-
-Inspired by Deepankar Bhade's [txtmoji](https://txtmoji.com/).
-
-## Table of Contents
-- [Features](#features)
-- [Getting Started](#getting-started)
-
-## Features
-
-- Convert text to emojis.
-- Securely share encrypted messages with others.
-- Decrypt messages with the associated password.
-
-## Getting Started
-
-To run Encryptxt locally, follow these steps:
-
-1. Clone the repository:
-
+4. 🌌 Push your spells to your cauldron:
+   
    ```sh
-   https://github.com/VividhPandey003/encryptext.git
+   git push origin your-magical-branch
+5. 🧙‍♀️ Send a pull request, to merge your changes into the main cauldron.
+
+
+
+### Enjoy sending secret emoji spells with Encryptxt! 🌟✉️💫
