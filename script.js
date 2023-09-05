@@ -4,6 +4,8 @@ const result = document.querySelector("#result");
 var clutter = "";
 var clutter2 = "";
 
+
+
 const asciiToEmojiMapping = {
     'A': '😎',
     'B': '👀',
@@ -233,4 +235,7 @@ const main = () => {
     document.querySelector("#encrypt-btn").addEventListener("click", encryption);
     document.querySelector("#decrypt-btn").addEventListener("click", decryption);
 }
+
+
+
 main()
