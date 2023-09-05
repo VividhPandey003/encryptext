@@ -9,9 +9,6 @@ You can access the live demo of Encryptxt here:
 ## Table of Contents
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
