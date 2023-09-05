@@ -225,8 +225,6 @@ button img{
     width: 45%;
     display: none;
     margin-top: 40px;
-    overflow:scroll; 
-    max-height:300px;
 }
 
 #foot {
