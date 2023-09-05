@@ -224,6 +224,14 @@ button img{
     margin-top: 40px;
 }
 
+footer {
+    width: 100%;
+    padding: 0.25em;
+    margin-top: 12rem;
+    display: flex;
+    place-content: center;
+  }
+  
 
 /* Media Queries */
 @media (max-width: 1400px) {
