@@ -60,8 +60,7 @@ You can access the live demo of Encryptxt here:
 
 ## Inspiration
 
-Inspired by Deepankar Bhade's txtmoji.
-[txtmoji](https://txtmoji.com/).
+Inspired by Deepankar Bhade's [txtmoji](https://txtmoji.com/).
 
 
 ## Table of Contents
