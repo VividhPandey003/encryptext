@@ -236,6 +236,11 @@ button img{
     justify-content: center;
   }
   
+footer a
+{
+    text-decoration:none;
+    color: #ff9c9c;
+}
 
 /* Media Queries */
 @media (max-width: 1400px) {
